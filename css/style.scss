@@ -72,10 +72,27 @@ $keyBlockSize:200px;
     }
 }
 
+.button--playAll{
+    display: block;
+    margin: 30px auto;
+    padding: 15px;
+    background-color: rgb(195, 245, 182);
+    border-radius: 10px;
+    border: 1px #000 solid;
+    cursor: pointer;
+}
+
 
 .interfaceIcon{
     height: 100%;
 }
+
+
+.pressedRecordButton{
+    transform: scale(0.9);
+    background-color: rgb(207, 99, 99);
+}
+
 
 
 //switch

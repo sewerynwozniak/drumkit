@@ -70,8 +70,24 @@
   cursor: pointer;
 }
 
+.button--playAll {
+  display: block;
+  margin: 30px auto;
+  padding: 15px;
+  background-color: #c3f5b6;
+  border-radius: 10px;
+  border: 1px #000 solid;
+  cursor: pointer;
+}
+
 .interfaceIcon {
   height: 100%;
+}
+
+.pressedRecordButton {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  background-color: #cf6363;
 }
 
 .switch {

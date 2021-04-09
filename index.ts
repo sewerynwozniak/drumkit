@@ -8,72 +8,115 @@ const kickDiv : HTMLDivElement = document.querySelector('#kickDiv');
 const snareDiv : HTMLDivElement = document.querySelector('#snareDiv');
 const rideDiv : HTMLDivElement = document.querySelector('#rideDiv');
 
-const btnRecord : HTMLButtonElement = document.querySelector('.btn--record');
-const btnPlay : HTMLButtonElement = document.querySelector('.btn--play');
-const channelPlay:any[] =[];
-const recordTimeStamp:any[]=[];
+const btnRecord0 : HTMLButtonElement = document.querySelector('[data-record="0"]');
+const btnPlay0 : HTMLButtonElement = document.querySelector('[data-play="0"]');
+const btnRecord1 : HTMLButtonElement = document.querySelector('[data-record="1"]');
+const btnPlay1 : HTMLButtonElement = document.querySelector('[data-play="1"]');
+const btnRecord2 : HTMLButtonElement = document.querySelector('[data-record="2"]');
+const btnPlay2 : HTMLButtonElement = document.querySelector('[data-play="2"]');
+const btnNodeRecord : NodeList = document.querySelectorAll('.btn--record');
+const btnPlayAll : HTMLButtonElement = document.querySelector('.button--playAll');
+const inputCheck1 : HTMLInputElement = document.querySelector('[data-input="0"]');
+
+const channelPlay:any[] =[[],[],[]];
+const recordTimeStampArray: any[]=[[],[],[]];
+let isRecording=false;
+let currentRecordChannel;
+
 
 appStart();
 function appStart():void{
     document.addEventListener('keydown', readKey);
-    btnRecord.addEventListener('click', record);
-    btnPlay.addEventListener('click', playChannel);
+    btnRecord0.addEventListener('click', pressRecord);
+    btnPlay0.addEventListener('click', playChannel);
+    btnRecord1.addEventListener('click', pressRecord);
+    btnPlay1.addEventListener('click', playChannel);
+    btnRecord2.addEventListener('click', pressRecord);
+    btnPlay2.addEventListener('click', playChannel);
+    btnPlayAll.addEventListener('click', playAll);
 }
 
 
-function record(e :KeyboardEvent):void{
-const singleRecordTimeStamp = e.timeStamp;
-recordTimeStamp.push({'ch1': singleRecordTimeStamp});
+
+
+
+
+function pressRecord(e :MouseEvent):void{
+    let recordNumber = this.getAttribute("data-record");  
+    const recordTimeStamp = e.timeStamp;
+    currentRecordChannel = recordNumber;
+    
+
+    if(recordTimeStampArray[recordNumber][0] == undefined && recordTimeStampArray[recordNumber][1] == undefined){
+          //setting start record
+          isRecording=true;
+          recordTimeStampArray[recordNumber].push(recordTimeStamp)
+          recordAnimation(btnNodeRecord[recordNumber]);
+    }else if(recordTimeStampArray[recordNumber][1] == undefined){
+         //setting stop record      
+         isRecording=false;
+         recordTimeStampArray[recordNumber].push(recordTimeStamp)
+         recordAnimation(btnNodeRecord[recordNumber]);
+         
+    }else{
+        //channel is already filled
+        return;
+    }
+
 }
 
 
-function playChannel():void{
-    console.log(recordTimeStamp[0].ch1)
-    console.log(channelPlay)
-    channelPlay.forEach((sound)=>{
-        let time = recordTimeStamp[0].ch1 - sound.time;
-        setTimeout(()=>playSound(sound.key), time) 
+
+function playAll(){
+    
+
+
+    channelPlay.forEach((channel)=>{    
+        channel.forEach(sound => {
+            let timeStart = sound.time-recordTimeStampArray[0];
+            setTimeout(()=>playSound(sound.key), timeStart)    
+        });   
+        
+    })
+
+    // console.log(channelPlay.length)
+    // console.log(channelPlay[0][0].time)
+
+    // for(let i=0;i<=channelPlay.length;i++){
+    //     for(let j=0;i<=channelPlay[i].length;i++){
+    //         // let timeStart = channelPlay[i][j].time-recordTimeStampArray[0];
+    //         // setTimeout(()=>playSound(channelPlay[i][j].key), timeStart)   
+    //     }
+    // }
+
+}
+
+
+function playChannel(e :MouseEvent):void{
+    let channelNumber = this.getAttribute("data-play"); 
+
+    channelPlay[channelNumber].forEach((sound)=>{       
+        let timeStart = sound.time-recordTimeStampArray[channelNumber][0];
+        setTimeout(()=>playSound(sound.key), timeStart)    
     })
 }
+
 
 
 function readKey(e :KeyboardEvent) :void{
     const key = e.key;
     const time = e.timeStamp;
-    // tylko wybrane klawisze mają być pushowane i odtwarzane
-    channelPlay.push({key, time});
-   
+    
     playSound(key);
-    animationBlock(key)
-}
+    animationBlock(key);
 
-
-function addAnimation(el:HTMLDivElement):void{
-el.style.transform = 'scale(0.95)';
-setTimeout(()=>{
-    el.style.transform = 'scale(1)';
-},10)
-}
-
-
-function animationBlock(key: string):void{
-
-    switch (key) {
-        case 'q':
-            addAnimation(hihatDiv);
-            break;
-        case 'w':
-            addAnimation(kickDiv);
-            break;
-        case 'e':
-            addAnimation(snareDiv);
-            break;
-        case 'r':
-            addAnimation(rideDiv);
-            break;
+    if(isRecording){
+        channelPlay[currentRecordChannel].push({key, time});
     }
-
+    
 }
+
+
 
 function playSound(key: string):void {
     switch (key) {
@@ -95,3 +138,42 @@ function playSound(key: string):void {
             break;
     }
 }
+
+
+
+
+// animation functions
+function blockAnimation(el:HTMLDivElement):void{
+el.style.transform = 'scale(0.95)';
+setTimeout(()=>{
+    el.style.transform = 'scale(1)';
+},10)
+}
+
+function recordAnimation(el):void{
+el.classList.toggle('pressedRecordButton');
+}
+
+
+
+function animationBlock(key: string):void{
+
+    switch (key) {
+        case 'q':
+            blockAnimation(hihatDiv);
+            break;
+        case 'w':
+            blockAnimation(kickDiv);
+            break;
+        case 'e':
+            blockAnimation(snareDiv);
+            break;
+        case 'r':
+            blockAnimation(rideDiv);
+            break;
+    }
+
+}
+
+
+
