@@ -1,0 +1,145 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.h1 {
+  text-align: center;
+  letter-spacing: 5px;
+  margin: 50px;
+}
+
+.keyBlockWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.keyLetter {
+  color: #fff;
+  text-align: center;
+  display: block;
+  margin: 20px;
+}
+
+.keyBlock {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color: #a3cce7;
+  margin: 30px;
+  border-radius: 10px;
+}
+
+.drumIcon {
+  position: absolute;
+  width: 30%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.btn {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin: 0 20px;
+  border-radius: 100px;
+  border: none;
+}
+
+.btn--record {
+  background-color: #caa0a0;
+}
+
+.btn--play {
+  background-color: #c3f5b6;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.interfaceIcon {
+  height: 100%;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 80%;
+  width: 50%;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border: 1px solid #d4d4d4;
+}
+
+input:checked + .slider {
+  background-color: cornflowerblue;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+          transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.recordPlayRow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 30px 0;
+}
+/*# sourceMappingURL=style.css.map */

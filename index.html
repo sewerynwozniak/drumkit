@@ -4,26 +4,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drumkit</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Drum kit</title>
 </head>
 <body>
     
 
-    <h1>Drumkit</h1>
+    <h1 class="h1">Drum kit</h1>
 
-    <div class="keyBlockWrapper">
-        <div class="keyBlock">
-            <audio data-sound="hihat" src="./hihat.wav"></audio>
+    <div class="keyBlockWrapper">     
+        <div class="keyBlock" id="hihatDiv">
+            <span class="keyLetter">q</span>
+            <img class="drumIcon" src="./icons/hihat.png" alt="hihat">
+            <audio data-sound="hihat" src="./sounds/hihat.wav"></audio>
         </div>
-        <div class="keyBlock">
-            <audio data-sound="perc" src="./perc.wav"></audio>
+        <div class="keyBlock" id="kickDiv">
+            <span class="keyLetter">w</span>
+            <img class="drumIcon" src="./icons/kick.png" alt="hihat">
+            <audio data-sound="kick" src="./sounds/kick.wav"></audio>
         </div>
-        <div class="keyBlock">
-            <audio src="./snare.wav"></audio>
+        <div class="keyBlock" id="snareDiv">
+            <span class="keyLetter">e</span>
+            <img class="drumIcon" src="./icons/snare.png" alt="hihat">
+            <audio data-sound="snare" src="./sounds/snare.wav"></audio>
+        </div>
+        <div class="keyBlock" id="rideDiv">
+            <span class="keyLetter">r</span>
+            <img class="drumIcon" src="./icons/ride.png" alt="hihat">
+            <audio data-sound="ride" src="./sounds/ride.wav"></audio>
         </div>
     </div>
 
-    <button class="btn--play">Play channel 1</button>
+
+    <div class="recordPlaySection">
+
+        <div class="recordPlayRow">
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            <button class="btn btn--record">
+                <img class="interfaceIcon" src="./icons/record.png" alt="record icon">
+            </button>
+            <button class="btn btn--play">
+                <img class="interfaceIcon" src="./icons/play.png" alt="play icon">
+            </button>
+        </div>
+        
+
+    </div>
+
+    
+
+
 
 
     <script src="index.js"></script>
