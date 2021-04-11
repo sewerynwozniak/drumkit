@@ -52,20 +52,13 @@ function pressRecord(e) {
     }
 }
 function playAll() {
+    // not working
     channelPlay.forEach(function (channel) {
         channel.forEach(function (sound) {
             var timeStart = sound.time - recordTimeStampArray[0];
             setTimeout(function () { return playSound(sound.key); }, timeStart);
         });
     });
-    // console.log(channelPlay.length)
-    // console.log(channelPlay[0][0].time)
-    // for(let i=0;i<=channelPlay.length;i++){
-    //     for(let j=0;i<=channelPlay[i].length;i++){
-    //         // let timeStart = channelPlay[i][j].time-recordTimeStampArray[0];
-    //         // setTimeout(()=>playSound(channelPlay[i][j].key), timeStart)   
-    //     }
-    // }
 }
 function playChannel(e) {
     var channelNumber = this.getAttribute("data-play");

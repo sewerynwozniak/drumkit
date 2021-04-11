@@ -68,9 +68,7 @@ function pressRecord(e :MouseEvent):void{
 
 
 function playAll(){
-    
-
-
+    // not working
     channelPlay.forEach((channel)=>{    
         channel.forEach(sound => {
             let timeStart = sound.time-recordTimeStampArray[0];
@@ -78,16 +76,6 @@ function playAll(){
         });   
         
     })
-
-    // console.log(channelPlay.length)
-    // console.log(channelPlay[0][0].time)
-
-    // for(let i=0;i<=channelPlay.length;i++){
-    //     for(let j=0;i<=channelPlay[i].length;i++){
-    //         // let timeStart = channelPlay[i][j].time-recordTimeStampArray[0];
-    //         // setTimeout(()=>playSound(channelPlay[i][j].key), timeStart)   
-    //     }
-    // }
 
 }
 
